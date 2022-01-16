@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve myproject
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/home/projects/UOB-smart-project-demo
+Environment="PATH=/home/projects/UOB-smart-project-demo/venv/bin"
+ExecStart=/home/projects/UOB-smart-project-demo/venv/bin/gunicorn --bind 0.0.0.0 -k eventlet -w 1 app:app
+
+
+[Install]
+WantedBy=multi-user.target
